@@ -14,7 +14,7 @@ exports.getMockedProfile = function () {
     },
     tenantId: '72f988bf-86f1-41af-91ab-2d7cd011db47',
     state: 'Enabled',
-    registeredProviders: ['mobileservice', 'website'],
+    registeredProviders: [],
     _eventsCount: '1',
     isDefault: true
   }, newProfile.environments['AzureCloud']));
@@ -35,11 +35,11 @@ nock('http://management.azure.com:443')
   'content-type': 'application/json; charset=utf-8',
   expires: '-1',
   'x-ms-failure-cause': 'gateway',
-  'x-ms-request-id': '243ca4f6-e694-4929-989a-470fa2cede12',
-  'x-ms-correlation-request-id': '243ca4f6-e694-4929-989a-470fa2cede12',
-  'x-ms-routing-request-id': 'WESTEUROPE:20170301T110550Z:243ca4f6-e694-4929-989a-470fa2cede12',
+  'x-ms-request-id': '251fcc2b-e3a4-4003-af3d-ac34de297d52',
+  'x-ms-correlation-request-id': '251fcc2b-e3a4-4003-af3d-ac34de297d52',
+  'x-ms-routing-request-id': 'WESTEUROPE:20170313T133809Z:251fcc2b-e3a4-4003-af3d-ac34de297d52',
   'strict-transport-security': 'max-age=31536000; includeSubDomains',
-  date: 'Wed, 01 Mar 2017 11:05:49 GMT',
+  date: 'Mon, 13 Mar 2017 13:38:09 GMT',
   connection: 'close',
   'content-length': '195' });
  return result; },
@@ -52,11 +52,11 @@ nock('https://management.azure.com:443')
   'content-type': 'application/json; charset=utf-8',
   expires: '-1',
   'x-ms-failure-cause': 'gateway',
-  'x-ms-request-id': '243ca4f6-e694-4929-989a-470fa2cede12',
-  'x-ms-correlation-request-id': '243ca4f6-e694-4929-989a-470fa2cede12',
-  'x-ms-routing-request-id': 'WESTEUROPE:20170301T110550Z:243ca4f6-e694-4929-989a-470fa2cede12',
+  'x-ms-request-id': '251fcc2b-e3a4-4003-af3d-ac34de297d52',
+  'x-ms-correlation-request-id': '251fcc2b-e3a4-4003-af3d-ac34de297d52',
+  'x-ms-routing-request-id': 'WESTEUROPE:20170313T133809Z:251fcc2b-e3a4-4003-af3d-ac34de297d52',
   'strict-transport-security': 'max-age=31536000; includeSubDomains',
-  date: 'Wed, 01 Mar 2017 11:05:49 GMT',
+  date: 'Mon, 13 Mar 2017 13:38:09 GMT',
   connection: 'close',
   'content-length': '195' });
  return result; },
@@ -65,20 +65,20 @@ var result =
 nock('http://management.azure.com:443')
   .filteringRequestBody(function (path) { return '*';})
 .put('/subscriptions/2c224e7e-3ef5-431d-a57b-e71f4662e3a6/resourceGroups/xplat-test-local-gateway/providers/Microsoft.Network/localNetworkGateways/invalidBgpPeeringAddressName?api-version=2016-09-01', '*')
-  .reply(201, "{\r\n  \"name\": \"invalidBgpPeeringAddressName\",\r\n  \"id\": \"/subscriptions/2c224e7e-3ef5-431d-a57b-e71f4662e3a6/resourceGroups/xplat-test-local-gateway/providers/Microsoft.Network/localNetworkGateways/invalidBgpPeeringAddressName\",\r\n  \"etag\": \"W/\\\"c7e61644-d63d-4522-8377-91b77b378ebf\\\"\",\r\n  \"type\": \"Microsoft.Network/localNetworkGateways\",\r\n  \"location\": \"westus\",\r\n  \"properties\": {\r\n    \"provisioningState\": \"Updating\",\r\n    \"resourceGuid\": \"8e4d59e3-1fe9-465f-9524-2b793979468e\",\r\n    \"localNetworkAddressSpace\": {\r\n      \"addressPrefixes\": []\r\n    },\r\n    \"gatewayIpAddress\": \"10.0.0.12\",\r\n    \"bgpSettings\": {\r\n      \"asn\": 1,\r\n      \"bgpPeeringAddress\": \"11.0.0.257\",\r\n      \"peerWeight\": 0\r\n    }\r\n  }\r\n}", { 'cache-control': 'no-cache',
+  .reply(201, "{\r\n  \"name\": \"invalidBgpPeeringAddressName\",\r\n  \"id\": \"/subscriptions/2c224e7e-3ef5-431d-a57b-e71f4662e3a6/resourceGroups/xplat-test-local-gateway/providers/Microsoft.Network/localNetworkGateways/invalidBgpPeeringAddressName\",\r\n  \"etag\": \"W/\\\"94ce4a5b-2354-4861-bf73-d59b2cd5041a\\\"\",\r\n  \"type\": \"Microsoft.Network/localNetworkGateways\",\r\n  \"location\": \"westus\",\r\n  \"properties\": {\r\n    \"provisioningState\": \"Updating\",\r\n    \"resourceGuid\": \"8560e6f3-42fc-4810-8c09-15779e4de9f8\",\r\n    \"localNetworkAddressSpace\": {\r\n      \"addressPrefixes\": []\r\n    },\r\n    \"gatewayIpAddress\": \"10.0.0.12\",\r\n    \"bgpSettings\": {\r\n      \"asn\": 1,\r\n      \"bgpPeeringAddress\": \"11.0.0.257\",\r\n      \"peerWeight\": 0\r\n    }\r\n  }\r\n}", { 'cache-control': 'no-cache',
   pragma: 'no-cache',
   'content-length': '708',
   'content-type': 'application/json; charset=utf-8',
   expires: '-1',
   'retry-after': '10',
-  'x-ms-request-id': '6b694e14-8498-4af0-9292-c49742e7bfc2',
-  'azure-asyncoperation': 'https://management.azure.com/subscriptions/2c224e7e-3ef5-431d-a57b-e71f4662e3a6/providers/Microsoft.Network/locations/westus.validation/operations/6b694e14-8498-4af0-9292-c49742e7bfc2?api-version=2016-09-01',
+  'x-ms-request-id': '14feae2f-f854-434f-8ae9-a6a01f87aebc',
+  'azure-asyncoperation': 'https://management.azure.com/subscriptions/2c224e7e-3ef5-431d-a57b-e71f4662e3a6/providers/Microsoft.Network/locations/westus.validation/operations/14feae2f-f854-434f-8ae9-a6a01f87aebc?api-version=2016-09-01',
   'strict-transport-security': 'max-age=31536000; includeSubDomains',
   server: 'Microsoft-HTTPAPI/2.0, Microsoft-HTTPAPI/2.0',
-  'x-ms-ratelimit-remaining-subscription-writes': '1198',
-  'x-ms-correlation-request-id': '99ac9c8d-bcfd-430a-b802-d51e5ddcd027',
-  'x-ms-routing-request-id': 'WESTEUROPE:20170301T110554Z:99ac9c8d-bcfd-430a-b802-d51e5ddcd027',
-  date: 'Wed, 01 Mar 2017 11:05:53 GMT',
+  'x-ms-ratelimit-remaining-subscription-writes': '1199',
+  'x-ms-correlation-request-id': '1ccb0444-1602-43da-b839-097bcbbc8b3c',
+  'x-ms-routing-request-id': 'WESTEUROPE:20170313T133812Z:1ccb0444-1602-43da-b839-097bcbbc8b3c',
+  date: 'Mon, 13 Mar 2017 13:38:11 GMT',
   connection: 'close' });
  return result; },
 function (nock) { 
@@ -86,55 +86,55 @@ var result =
 nock('https://management.azure.com:443')
   .filteringRequestBody(function (path) { return '*';})
 .put('/subscriptions/2c224e7e-3ef5-431d-a57b-e71f4662e3a6/resourceGroups/xplat-test-local-gateway/providers/Microsoft.Network/localNetworkGateways/invalidBgpPeeringAddressName?api-version=2016-09-01', '*')
-  .reply(201, "{\r\n  \"name\": \"invalidBgpPeeringAddressName\",\r\n  \"id\": \"/subscriptions/2c224e7e-3ef5-431d-a57b-e71f4662e3a6/resourceGroups/xplat-test-local-gateway/providers/Microsoft.Network/localNetworkGateways/invalidBgpPeeringAddressName\",\r\n  \"etag\": \"W/\\\"c7e61644-d63d-4522-8377-91b77b378ebf\\\"\",\r\n  \"type\": \"Microsoft.Network/localNetworkGateways\",\r\n  \"location\": \"westus\",\r\n  \"properties\": {\r\n    \"provisioningState\": \"Updating\",\r\n    \"resourceGuid\": \"8e4d59e3-1fe9-465f-9524-2b793979468e\",\r\n    \"localNetworkAddressSpace\": {\r\n      \"addressPrefixes\": []\r\n    },\r\n    \"gatewayIpAddress\": \"10.0.0.12\",\r\n    \"bgpSettings\": {\r\n      \"asn\": 1,\r\n      \"bgpPeeringAddress\": \"11.0.0.257\",\r\n      \"peerWeight\": 0\r\n    }\r\n  }\r\n}", { 'cache-control': 'no-cache',
+  .reply(201, "{\r\n  \"name\": \"invalidBgpPeeringAddressName\",\r\n  \"id\": \"/subscriptions/2c224e7e-3ef5-431d-a57b-e71f4662e3a6/resourceGroups/xplat-test-local-gateway/providers/Microsoft.Network/localNetworkGateways/invalidBgpPeeringAddressName\",\r\n  \"etag\": \"W/\\\"94ce4a5b-2354-4861-bf73-d59b2cd5041a\\\"\",\r\n  \"type\": \"Microsoft.Network/localNetworkGateways\",\r\n  \"location\": \"westus\",\r\n  \"properties\": {\r\n    \"provisioningState\": \"Updating\",\r\n    \"resourceGuid\": \"8560e6f3-42fc-4810-8c09-15779e4de9f8\",\r\n    \"localNetworkAddressSpace\": {\r\n      \"addressPrefixes\": []\r\n    },\r\n    \"gatewayIpAddress\": \"10.0.0.12\",\r\n    \"bgpSettings\": {\r\n      \"asn\": 1,\r\n      \"bgpPeeringAddress\": \"11.0.0.257\",\r\n      \"peerWeight\": 0\r\n    }\r\n  }\r\n}", { 'cache-control': 'no-cache',
   pragma: 'no-cache',
   'content-length': '708',
   'content-type': 'application/json; charset=utf-8',
   expires: '-1',
   'retry-after': '10',
-  'x-ms-request-id': '6b694e14-8498-4af0-9292-c49742e7bfc2',
-  'azure-asyncoperation': 'https://management.azure.com/subscriptions/2c224e7e-3ef5-431d-a57b-e71f4662e3a6/providers/Microsoft.Network/locations/westus.validation/operations/6b694e14-8498-4af0-9292-c49742e7bfc2?api-version=2016-09-01',
+  'x-ms-request-id': '14feae2f-f854-434f-8ae9-a6a01f87aebc',
+  'azure-asyncoperation': 'https://management.azure.com/subscriptions/2c224e7e-3ef5-431d-a57b-e71f4662e3a6/providers/Microsoft.Network/locations/westus.validation/operations/14feae2f-f854-434f-8ae9-a6a01f87aebc?api-version=2016-09-01',
   'strict-transport-security': 'max-age=31536000; includeSubDomains',
   server: 'Microsoft-HTTPAPI/2.0, Microsoft-HTTPAPI/2.0',
-  'x-ms-ratelimit-remaining-subscription-writes': '1198',
-  'x-ms-correlation-request-id': '99ac9c8d-bcfd-430a-b802-d51e5ddcd027',
-  'x-ms-routing-request-id': 'WESTEUROPE:20170301T110554Z:99ac9c8d-bcfd-430a-b802-d51e5ddcd027',
-  date: 'Wed, 01 Mar 2017 11:05:53 GMT',
+  'x-ms-ratelimit-remaining-subscription-writes': '1199',
+  'x-ms-correlation-request-id': '1ccb0444-1602-43da-b839-097bcbbc8b3c',
+  'x-ms-routing-request-id': 'WESTEUROPE:20170313T133812Z:1ccb0444-1602-43da-b839-097bcbbc8b3c',
+  date: 'Mon, 13 Mar 2017 13:38:11 GMT',
   connection: 'close' });
  return result; },
 function (nock) { 
 var result = 
 nock('http://management.azure.com:443')
-  .get('/subscriptions/2c224e7e-3ef5-431d-a57b-e71f4662e3a6/providers/Microsoft.Network/locations/westus.validation/operations/6b694e14-8498-4af0-9292-c49742e7bfc2?api-version=2016-09-01')
+  .get('/subscriptions/2c224e7e-3ef5-431d-a57b-e71f4662e3a6/providers/Microsoft.Network/locations/westus.validation/operations/14feae2f-f854-434f-8ae9-a6a01f87aebc?api-version=2016-09-01')
   .reply(200, "{\r\n  \"status\": \"Failed\",\r\n  \"error\": {\r\n    \"code\": \" InternalError\",\r\n    \"message\": \" BadRequest: InvalidIPAddress - The specified BGP peer IP address '11.0.0.257' is not valid.\",\r\n    \"details\": []\r\n  }\r\n}", { 'cache-control': 'no-cache',
   pragma: 'no-cache',
   'content-length': '208',
   'content-type': 'application/json; charset=utf-8',
   expires: '-1',
-  'x-ms-request-id': '1749cb0d-02c8-47b9-b96d-3d0488d9a8df',
+  'x-ms-request-id': 'a1a00942-36be-4b5a-8db1-8d71199fa650',
   'strict-transport-security': 'max-age=31536000; includeSubDomains',
   server: 'Microsoft-HTTPAPI/2.0, Microsoft-HTTPAPI/2.0',
-  'x-ms-ratelimit-remaining-subscription-reads': '14995',
-  'x-ms-correlation-request-id': '3a18530f-d801-47bf-9985-663fb276613a',
-  'x-ms-routing-request-id': 'WESTEUROPE:20170301T110625Z:3a18530f-d801-47bf-9985-663fb276613a',
-  date: 'Wed, 01 Mar 2017 11:06:24 GMT',
+  'x-ms-ratelimit-remaining-subscription-reads': '14996',
+  'x-ms-correlation-request-id': '78eea7c2-8095-4845-9e42-a6c58689a052',
+  'x-ms-routing-request-id': 'WESTEUROPE:20170313T133843Z:78eea7c2-8095-4845-9e42-a6c58689a052',
+  date: 'Mon, 13 Mar 2017 13:38:43 GMT',
   connection: 'close' });
  return result; },
 function (nock) { 
 var result = 
 nock('https://management.azure.com:443')
-  .get('/subscriptions/2c224e7e-3ef5-431d-a57b-e71f4662e3a6/providers/Microsoft.Network/locations/westus.validation/operations/6b694e14-8498-4af0-9292-c49742e7bfc2?api-version=2016-09-01')
+  .get('/subscriptions/2c224e7e-3ef5-431d-a57b-e71f4662e3a6/providers/Microsoft.Network/locations/westus.validation/operations/14feae2f-f854-434f-8ae9-a6a01f87aebc?api-version=2016-09-01')
   .reply(200, "{\r\n  \"status\": \"Failed\",\r\n  \"error\": {\r\n    \"code\": \" InternalError\",\r\n    \"message\": \" BadRequest: InvalidIPAddress - The specified BGP peer IP address '11.0.0.257' is not valid.\",\r\n    \"details\": []\r\n  }\r\n}", { 'cache-control': 'no-cache',
   pragma: 'no-cache',
   'content-length': '208',
   'content-type': 'application/json; charset=utf-8',
   expires: '-1',
-  'x-ms-request-id': '1749cb0d-02c8-47b9-b96d-3d0488d9a8df',
+  'x-ms-request-id': 'a1a00942-36be-4b5a-8db1-8d71199fa650',
   'strict-transport-security': 'max-age=31536000; includeSubDomains',
   server: 'Microsoft-HTTPAPI/2.0, Microsoft-HTTPAPI/2.0',
-  'x-ms-ratelimit-remaining-subscription-reads': '14995',
-  'x-ms-correlation-request-id': '3a18530f-d801-47bf-9985-663fb276613a',
-  'x-ms-routing-request-id': 'WESTEUROPE:20170301T110625Z:3a18530f-d801-47bf-9985-663fb276613a',
-  date: 'Wed, 01 Mar 2017 11:06:24 GMT',
+  'x-ms-ratelimit-remaining-subscription-reads': '14996',
+  'x-ms-correlation-request-id': '78eea7c2-8095-4845-9e42-a6c58689a052',
+  'x-ms-routing-request-id': 'WESTEUROPE:20170313T133843Z:78eea7c2-8095-4845-9e42-a6c58689a052',
+  date: 'Mon, 13 Mar 2017 13:38:43 GMT',
   connection: 'close' });
  return result; }]];
