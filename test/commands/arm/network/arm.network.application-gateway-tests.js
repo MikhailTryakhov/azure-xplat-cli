@@ -1157,11 +1157,12 @@ describe('arm', function () {
         });
       });
 
-      it('waf-config create should create application gateway waf config', function (done) {
+      it('waf-config create should create application gateway WAF config', function (done) {
         var cmd = 'network application-gateway set -g {group} --sku-name {wafSkuName} --sku-tier {wafSkuTier} --name {name} --json'.formatArgs(gatewayProp);
         testUtils.executeCommand(suite, retry, cmd, function (result) {
           result.exitStatus.should.equal(0);
-          var cmd = 'network application-gateway waf-config create -g {group} --waf-mode {firewallMode} --enable {firewallEnabled} --rule-set-type {firewallRuleSetType} --rule-set-version {firewallRuleSetVersion} --gateway-name {name} --json'.formatArgs(gatewayProp);
+          var cmd = util.format('network application-gateway waf-config create -g {group} --waf-mode {firewallMode} --enable {firewallEnabled}' +
+          '--rule-set-type {firewallRuleSetType} --rule-set-version {firewallRuleSetVersion} --gateway-name {name} --json').formatArgs(gatewayProp);
           testUtils.executeCommand(suite, retry, cmd, function (result) {
             result.exitStatus.should.equal(0);
             var output = JSON.parse(result.text);
@@ -1175,7 +1176,7 @@ describe('arm', function () {
         });
       });
 
-      it('waf-config show should display application gateway waf config details', function (done) {
+      it('waf-config show should display application gateway WAF config details', function (done) {
         var cmd = 'network application-gateway waf-config show -g {group} --gateway-name {name} --json'.formatArgs(gatewayProp);
         testUtils.executeCommand(suite, retry, cmd, function (result) {
           result.exitStatus.should.equal(0);
@@ -1189,46 +1190,61 @@ describe('arm', function () {
         });
       });
 
-      it('disabled-rule-groups create should add disabled rule group to waf config', function (done) {
-        var cmd = 'network application-gateway waf-config disabled-rule-groups create --rule-group-name {firewallDisabledRuleGroupName} -g {group} --gateway-name {name} --json'.formatArgs(gatewayProp);
+      it('disabled-rule-groups create should add disabled rule group to WAF config', function (done) {
+        var cmd = util.format('network application-gateway waf-config disabled-rule-groups create ' +
+          '-n {firewallDisabledRuleGroupName} -g {group} --gateway-name {name} --json').formatArgs(gatewayProp);
         testUtils.executeCommand(suite, retry, cmd, function (result) {
           result.exitStatus.should.equal(0);
           var output = JSON.parse(result.text);
           output.should.not.be.empty;
           output.disabledRuleGroups.should.not.be.empty;
-          output.disabledRuleGroups[0].ruleGroupName.should.equal(gatewayProp.firewallDisabledRuleGroupName);
-          should.not.exist(output.disabledRuleGroups[0].rules);
+
+          _.some(output.disabledRuleGroups, function (group) {
+            return group.ruleGroupName === gatewayProp.firewallDisabledRuleGroupName && !group.rules;
+          }).should.be.true;
+
           done();
         });
       });
 
       it('disabled-rule-groups list should display list of disabled rule groups', function (done) {
-        var cmd = 'network application-gateway waf-config disabled-rule-groups list -g {group} --gateway-name {name} --json'.formatArgs(gatewayProp);
+        var cmd = util.format('network application-gateway waf-config disabled-rule-groups list ' +
+          '-g {group} --gateway-name {name} --json').formatArgs(gatewayProp);
         testUtils.executeCommand(suite, retry, cmd, function (result) {
           result.exitStatus.should.equal(0);
           var output = JSON.parse(result.text);
           output.should.not.be.empty;
-          output[0].ruleGroupName.should.equal(gatewayProp.firewallDisabledRuleGroupName);
-          should.not.exist(output[0].rules);
+
+          _.some(output, function (group) {
+            return group.ruleGroupName === gatewayProp.firewallDisabledRuleGroupName && !group.rules;
+          }).should.be.true;
+
           done();
         });
       });
 
       it('disabled-rule-groups set should modify disabled rule group details', function (done) {
-        var cmd = 'network application-gateway waf-config disabled-rule-groups set --rule-group-name {firewallDisabledRuleGroupName} --rules {firewallDisabledRuleGroupRules} -g {group} --gateway-name {name} --json'.formatArgs(gatewayProp);
+        var cmd = util.format('network application-gateway waf-config disabled-rule-groups set ' +
+          '--rule-group-name {firewallDisabledRuleGroupName} --rules {firewallDisabledRuleGroupRules} '+
+          '-g {group} --gateway-name {name} --json').formatArgs(gatewayProp);
         testUtils.executeCommand(suite, retry, cmd, function (result) {
           result.exitStatus.should.equal(0);
           var output = JSON.parse(result.text);
           output.should.not.be.empty;
           output.disabledRuleGroups.should.not.be.empty;
-          output.disabledRuleGroups[0].ruleGroupName.should.equal(gatewayProp.firewallDisabledRuleGroupName);
-          output.disabledRuleGroups[0].rules.join(',').should.equal(gatewayProp.firewallDisabledRuleGroupRules);
+
+          _.some(output.disabledRuleGroups, function (group) {
+            return group.ruleGroupName === gatewayProp.firewallDisabledRuleGroupName 
+                && group.rules.join(',') === gatewayProp.firewallDisabledRuleGroupRules;
+          }).should.be.true;
+          
           done();
         });
       });
 
       it('disabled-rule-groups show should display modified disabled rule group details', function (done) {
-        var cmd = 'network application-gateway waf-config disabled-rule-groups show --rule-group-name {firewallDisabledRuleGroupName} -g {group} --gateway-name {name} --json'.formatArgs(gatewayProp);
+        var cmd = util.format('network application-gateway waf-config disabled-rule-groups show ' +
+        '--rule-group-name {firewallDisabledRuleGroupName} -g {group} --gateway-name {name} --json').formatArgs(gatewayProp);
         testUtils.executeCommand(suite, retry, cmd, function (result) {
           result.exitStatus.should.equal(0);
           var output = JSON.parse(result.text);
@@ -1239,21 +1255,26 @@ describe('arm', function () {
         });
       });
 
-      it('waf-config show should display application gateway waf config details with disabled rule group', function (done) {
+      it('waf-config show should display application gateway WAF config details with disabled rule group', function (done) {
         var cmd = 'network application-gateway waf-config show -g {group} --gateway-name {name} --json'.formatArgs(gatewayProp);
         testUtils.executeCommand(suite, retry, cmd, function (result) {
           result.exitStatus.should.equal(0);
           var output = JSON.parse(result.text);
           output.should.not.be.empty;
           output.disabledRuleGroups.should.not.be.empty;
-          output.disabledRuleGroups[0].ruleGroupName.should.equal(gatewayProp.firewallDisabledRuleGroupName);
-          output.disabledRuleGroups[0].rules.join(',').should.equal(gatewayProp.firewallDisabledRuleGroupRules);
+
+          _.some(output.disabledRuleGroups, function (group) {
+            return group.ruleGroupName === gatewayProp.firewallDisabledRuleGroupName 
+                && group.rules.join(',') === gatewayProp.firewallDisabledRuleGroupRules;
+          }).should.be.true;
+          
           done();
         });
       });
 
-      it('disabled-rule-groups delete should remove disabled rule group from waf config', function (done) {
-        var cmd = 'network application-gateway waf-config disabled-rule-groups delete --rule-group-name {firewallDisabledRuleGroupName} -g {group} --gateway-name {name} --json'.formatArgs(gatewayProp);
+      it('disabled-rule-groups delete should remove disabled rule group from WAF config', function (done) {
+        var cmd = util.format('network application-gateway waf-config disabled-rule-groups delete ' +
+          '-n {firewallDisabledRuleGroupName} -g {group} --gateway-name {name} --json').formatArgs(gatewayProp);
         testUtils.executeCommand(suite, retry, cmd, function (result) {
           result.exitStatus.should.equal(0);
           var output = JSON.parse(result.text);
@@ -1263,7 +1284,7 @@ describe('arm', function () {
         });
       });
 
-      it('waf-config show display application gateway waf config details without disabled rule group', function (done) {
+      it('waf-config show display application gateway WAF config details without disabled rule group', function (done) {
         var cmd = 'network application-gateway waf-config show -g {group} --gateway-name {name} --json'.formatArgs(gatewayProp);
         testUtils.executeCommand(suite, retry, cmd, function (result) {
           result.exitStatus.should.equal(0);
