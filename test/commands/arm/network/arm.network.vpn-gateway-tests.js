@@ -25,7 +25,7 @@ var NetworkTestUtil = require('../../../util/networkTestUtil');
 var networkUtil = new NetworkTestUtil();
 
 var testPrefix = 'arm-network-vpn-gateway-tests',
-  groupName = 'xplat-test-vpn-gateway',
+  groupName = 'xplat-test-vpn-gateway1',
   location;
 
 var gatewayProp = {
