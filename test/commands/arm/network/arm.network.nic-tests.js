@@ -58,7 +58,7 @@ var nicProp = {
   tags: networkUtil.tags,
   newTags: networkUtil.newTags,
   attachedVMName: 'tempXplatVMForNicTests',
-  attachedVMStorageAccount: 'xplattemptestaccount'
+  attachedVMStorageAccount: 'niceffectivetestaccount'
 };
 var ipConfigProp1 = {
   name: 'config01'
@@ -72,7 +72,7 @@ var ipConfigProp2 = {
 };
 var publicIpProp = {
   name: 'test-ip',
-  domainName: 'foo-domain',
+  domainName: 'foo-domain-test',
   allocationMethod: 'Static',
   ipVersion: 'IPv4',
   idleTimeout: 4,
@@ -83,7 +83,7 @@ var lbProp = {
   fipName: 'test-fip',
   publicIpProp: {
     name: 'test-fip-ip',
-    domainName: 'baz-domain',
+    domainName: 'baz-domain-test',
     allocationMethod: 'Dynamic',
     ipVersion: 'IPv4',
     idleTimeout: 4,
@@ -185,6 +185,7 @@ describe('arm', function () {
           });
         });
       });
+
       it('show should display nic details', function (done) {
         var cmd = 'network nic show -g {group} -n {name} --json'.formatArgs(nicProp);
         testUtils.executeCommand(suite, retry, cmd, function (result) {
@@ -275,6 +276,7 @@ describe('arm', function () {
           });
         });
       });
+
       it('list should display all nics in resource group', function (done) {
         var cmd = 'network nic list -g {group} --json'.formatArgs(nicProp);
         testUtils.executeCommand(suite, retry, cmd, function (result) {
